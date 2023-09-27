@@ -1,21 +1,23 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { ComputePipe } from './compute.pipe';
+import { randText } from '@ngneat/falso';
 
 @Component({
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, ComputePipe],
   selector: 'app-root',
   template: `
     <div *ngFor="let person of persons; let index = index">
-      {{ heavyComputation(person, index) }}
+      {{ person | compute : index }}
     </div>
+    <button (click)="change()">Change</button>
   `,
 })
 export class AppComponent {
   persons = ['toto', 'jack'];
 
-  heavyComputation(name: string, index: number) {
-    // very heavy computation
-    return `${name} - ${index}`;
+  change() {
+    this.persons[0] = randText();
   }
 }
