@@ -19,10 +19,21 @@ import { PersonListComponent } from './person-list.component';
       *ngIf="loadList"
       class="max-w-2xl"
       [persons]="persons"
-      title="Persons" />
+      title="Persons"
+      (addPerson)="onAddPerson($event)" />
   `,
 })
 export class AppComponent {
   persons = generateList();
   loadList = false;
+
+  onAddPerson(name: string) {
+    this.persons = [
+      {
+        name,
+        fib: Math.floor(Math.random() * 30) + 25,
+      },
+      ...this.persons,
+    ];
+  }
 }
