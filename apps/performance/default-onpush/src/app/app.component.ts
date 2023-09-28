@@ -11,8 +11,8 @@ import { RandomComponent } from './random.component';
     <app-random />
 
     <div class="flex">
-      <app-person-list [names]="girlList" title="Female" />
-      <app-person-list [names]="boyList" title="Male" />
+      <app-person-list title="female" [names]="girlList" />
+      <app-person-list title="male" [names]="boyList" />
     </div>
   `,
 })
